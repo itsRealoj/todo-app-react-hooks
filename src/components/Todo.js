@@ -46,14 +46,13 @@ export const Todo = () => {
 				</button>
 			</div>
 			<ul>
-				{state.todos.map(({ id, text }) => {
-					return (
-						<li key={id} onClick={() => handleTodoDelete(id)}>
-							{text}
-						</li>
-					);
-				})}
+				{state.todos.map(({ text, id }) => (
+					<li key={id} onClick={() => handleTodoDelete(id)}>
+						{text}
+					</li>
+				))}
 			</ul>
+			<p>{text}</p>
 		</div>
 	);
 };

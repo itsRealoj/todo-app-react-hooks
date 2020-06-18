@@ -1,8 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { TodoContext, TodoContextProvider } from './contexts/TodoContext';
-
+import { TodoContextProvider } from './contexts/TodoContext';
 import { Todo } from './components/Todo';
 
 function App() {
