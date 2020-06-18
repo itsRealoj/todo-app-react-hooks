@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { v4 as todoId } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 import { TodoContext } from '../contexts/TodoContext';
 
@@ -13,4 +13,47 @@ export const Todo = () => {
 			payload: id,
 		});
 	};
+
+	const handleTodoDelete = (id) => {
+		delTodo(id);
+	};
+
+	const handleChange = (e) => {
+		setText(e.target.value);
+	};
+
+	const handleAddTodo = () => {
+		if (!text) return;
+
+		dispatch({
+			type: 'ADD_TODO',
+			payload: {
+				text,
+				id: uuidv4(),
+			},
+		});
+		console.log(text);
+		setText('');
+	};
+
+	return (
+		<div>
+			<div>
+				<label>Add todo</label>
+				<input type='text' value={text} onChange={handleChange} />
+				<button type='button' onClick={handleAddTodo}>
+					Add Todo
+				</button>
+			</div>
+			<ul>
+				{state.todos.map(({ id, text }) => {
+					return (
+						<li key={id} onClick={() => handleTodoDelete(id)}>
+							{text}
+						</li>
+					);
+				})}
+			</ul>
+		</div>
+	);
 };
