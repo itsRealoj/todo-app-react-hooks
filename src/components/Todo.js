@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
+import AddTodo from './AddTodo';
 
-const todo = ({ todo }) => <div> {todo.text} </div>
+//const todo = ({ todo }) => <div> {todo.text} </div>
 
 function Todo() {
     const [todos, setTodos] = useState([
@@ -18,6 +19,7 @@ function Todo() {
     <div>{(todos.map(todo => <div>{todo.text}</div>))}</div>
                 </div>
             </form>
+            <AddTodo/>  
         </div>
     )
 }
