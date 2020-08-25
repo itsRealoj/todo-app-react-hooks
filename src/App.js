@@ -1,20 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { TodoContextProvider } from './contexts/TodoContext';
-import { Todo } from './components/Todo';
+import Login from './components/login';
 
 function App() {
-	return (
-		<div className='App'>
-			<TodoContextProvider>
-				<header className='App-header'>
-					<img src={logo} className='App-logo' alt='logo' />
-					<Todo />
-				</header>
-			</TodoContextProvider>
-		</div>
-	);
+  return (
+    <div className="App">
+      <p class="alert-success">To Do List</p>
+      <Login/>
+    </div>
+  );
 }
 
 export default App;
