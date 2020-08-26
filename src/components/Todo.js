@@ -1,7 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 
 //extract text from each todo
-const Todo = ({ todo }) => <div> {todo.text}</div>
+const Todo = ({ todo, index, completeTodo }) => <div> {todo.text}
+<div><button onClick={() => completeTodo(index)}>
+    complete</button></div>
+</div>
 
 //todo form
 function TodoForm({AddTodo}) {
@@ -17,7 +20,7 @@ function TodoForm({AddTodo}) {
     return(
         <form onSubmit={handleSubmit}>
             <div>
-                <input placeholder="new todo" value={value} onChange={e => setValue(e.target.value)}/><span><button>Add Todo</button></span>
+                <input placeholder="new todo" value={value} onChange={e => setValue(e.target.value)}/><span><button type="submit">Add Todo</button></span>
             </div>
         </form>
     )
@@ -25,10 +28,10 @@ function TodoForm({AddTodo}) {
 
 function Todos() {
     const [todos, setTodos] = useState([
-        {text: "Code react todo-list app"}, 
-        {text: "Create tic tac toe game"},
-        {text: "Go to the gym"}
-    ]);
+        {text: "Code react todo-list app", isCompleted: false}, 
+        {text: "Create tic tac toe game", isCompleted: false},
+        {text: "Go to the gym", isCompleted: false}
+    ]); 
 
     //add new todos
     const AddTodo = text => {
@@ -36,12 +39,19 @@ function Todos() {
         setTodos(newTodos);
     } 
 
+    //completing a todo
+    const completeTodo = index => {
+        const newTodos = [...todos];
+        newTodos[index].isCompleted = true;
+        setTodos(newTodos);
+    }
+
     return(
         <div className="container">
             <form>
                 <div>
                     <div>
-                        {(todos.map((todo) => <Todo todo={todo}/>))}
+                        {(todos.map((todo, index) => <Todo todo={todo} index={index} key={index} completeTodo={completeTodo}/>))}
                     </div>
                     
                 </div>
