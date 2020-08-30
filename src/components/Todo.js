@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 
 //extract text from each todo
-const Todo = ({ todo, index, completeTodo }) => <div> {todo.text}
-<div><button onClick={() => completeTodo(index)}>
-    complete</button></div>
-</div>
+const Todo = ({ todo, index, completeTodo }) =>
+    (
+        // apply style if the todo is marked completed
+    <div> 
+        <div style={{textDecoration: todo.isCompleted ? "line-through": ""}}>
+            {todo.text}
+        </div>
+        <div><button onClick={() => completeTodo(index)}>
+        complete</button></div>
+    </div>
+    )
 
 //todo form
 function TodoForm({AddTodo}) {
@@ -26,7 +33,7 @@ function TodoForm({AddTodo}) {
     )
 }
 
-function Todos() {
+const Todos = () => {
     const [todos, setTodos] = useState([
         {text: "Code react todo-list app", isCompleted: false}, 
         {text: "Create tic tac toe game", isCompleted: false},
@@ -35,7 +42,7 @@ function Todos() {
 
     //add new todos
     const AddTodo = text => {
-        const newTodos = [...todos, { text }];
+        const newTodos = [...todos, { text, isCompleted: false }];
         setTodos(newTodos);
     } 
 
@@ -53,7 +60,6 @@ function Todos() {
                     <div>
                         {(todos.map((todo, index) => <Todo todo={todo} index={index} key={index} completeTodo={completeTodo}/>))}
                     </div>
-                    
                 </div>
             </form>
             <TodoForm AddTodo={AddTodo}/>

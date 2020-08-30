@@ -5,7 +5,7 @@ import Todos from './components/Todo';
 function App() {
   return (
     <div className="App">
-      <p class="alert-success">To Do List</p>
+      <p className="alert-success">To Do List</p>
       <Todos/>
       {/* <AddTodo/>   */}
     </div>
